@@ -6,6 +6,7 @@ import ListPage from "./pages/ListPage";
 import EditListPage from "./pages/EditListPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import ListDetailsPage from "./pages/ListDetailsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/lists" element={<ListPage />} />
         <Route path="/lists/edit/:listId" element={<EditListPage />} />
+        <Route path="/lists/:listId" element={<ListDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>

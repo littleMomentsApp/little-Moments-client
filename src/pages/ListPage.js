@@ -1,5 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ListCard from "../components/ListCard";
+
+const API_URL = "http://localhost:5005/api/lists";
+
 function ListPage() {
-  return <h1>ListPage</h1>;
+  const [listToDisplay, setListToDisplay] = useState([]);
+
+  const getLists = () => {
+    axios
+      .get(API_URL)
+      .then((response) => {
+        setListToDisplay(response.data);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  useEffect(() => {
+    getLists();
+  }, []);
+
+  return (
+    <div className="ListPage">
+      <h1>ListPage</h1>
+
+      {listToDisplay.map((listObj) => (
+        <ListCard key={listObj._id} {...listObj} />
+      ))}
+    </div>
+  );
 }
 
 export default ListPage;
