@@ -15,9 +15,6 @@ function Navbar() {
       </Link>
       {isLoggedIn && (
         <>
-      <Link to="/lists/edit/:listId">
-        <button>EditList</button>
-      </Link>
       <button onClick={isLoggedOut}>Logout</button>
       </>
       )}

@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5005"
-
 function SignUpPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState ("");

@@ -1,6 +1,6 @@
 // src/context/auth.context.js
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 const API_URL = "http://localhost:5005";
 
@@ -14,6 +14,10 @@ function AuthProviderWrapper(props) {
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
+
+  useEffect(()=>{
+    authenticateUser();
+  },[])
 
   const authenticateUser = () => {
     const storedToken = localStorage.getItem("authToken");

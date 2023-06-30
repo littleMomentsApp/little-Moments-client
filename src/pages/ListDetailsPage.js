@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005/api/lists";
 
 function ListDetailsPage() {
+  const {storeToken, authenticateUser} = useContext(AuthContext);
   const [list, setList] = useState({});
   const { listId } = useParams();
-
+  const navigate = useNavigate();
   const getOneList = () => {
     axios
       .get(`${API_URL}/${listId}`)
@@ -25,6 +28,18 @@ function ListDetailsPage() {
     // eslint-disable-next-line
   }, []);
 
+  const deleteList = () => {
+    axios
+      .delete(`${API_URL}/${listId}`)
+      
+      .then((response) => {
+        storeToken(response.data.authToken)
+        authenticateUser();
+        navigate("/lists");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="ListDetailsPage">
       <h3>{list.title}</h3>
@@ -34,6 +49,13 @@ function ListDetailsPage() {
         list.products.map((productObj) => (
           <ProductCard key={productObj._id} {...productObj} />
         ))}
+      <Link to={`/lists/edit/${listId}`}>
+        <button>Edit List</button>
+      </Link>
+
+      
+      <button onClick={deleteList}> Delete List </button>
+      
     </div>
   );
 }
