@@ -10,7 +10,7 @@ function ListPage() {
 
   const getLists = () => {
     axios
-      .get(API_URL)
+      .get(`${API_URL}`)
       .then((response) => {
         setListToDisplay(response.data);
       })

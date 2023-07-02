@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "http://localhost:5005/api/lists";
 
-function AddList(props) {
+function AddList({ refreshList }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -27,7 +27,7 @@ function AddList(props) {
         setDescription("");
         setDate("");
         setProducts([]);
-        props.refresh();
+        refreshList();
         navigate("/lists");
       })
       .catch((error) => console.log(error));
