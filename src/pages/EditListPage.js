@@ -78,6 +78,7 @@ function EditListPage(props) {
           products.map((productObj) => (
             <ProductCard key={productObj._id} {...productObj} />
           ))}
+        <button type="submit">Update</button>
       </form>
     </div>
   );

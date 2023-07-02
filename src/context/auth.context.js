@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
 const API_URL = "http://localhost:5005";
 
 const AuthContext = React.createContext();
@@ -14,10 +15,6 @@ function AuthProviderWrapper(props) {
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
-
-  useEffect(()=>{
-    authenticateUser();
-  },[])
 
   const authenticateUser = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -42,23 +39,38 @@ function AuthProviderWrapper(props) {
           setIsLoading(false);
           setUser(null);
         });
+    } else {
+      // If the token is not available (or is removed)
+      setIsLoggedIn(false);
+      setIsLoading(false);
+      setUser(null);
     }
   };
 
-  const removeToken = () =>{
-    localStorage.removeItem("authToken")
-  }
+  const removeToken = () => {
+    localStorage.removeItem("authToken");
+  };
 
-  const isLoggedOut = () => {
+  const logOutUser = () => {
     removeToken();
     authenticateUser();
-  }
+  };
 
-
+  useEffect(() => {
+    authenticateUser();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, isLoading, user,  storeToken,
-        authenticateUser, isLoggedOut }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        isLoading,
+        user,
+        storeToken,
+        authenticateUser,
+        logOutUser,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
