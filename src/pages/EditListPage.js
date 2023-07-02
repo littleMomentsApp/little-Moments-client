@@ -13,6 +13,7 @@ function EditListPage(props) {
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
   const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
@@ -32,9 +33,11 @@ function EditListPage(props) {
     const requestBody = { title, description, date, products };
 
     axios
-      .put(`${API_URL}/api/lists/${listId}`, requestBody)
+      .put(`${API_URL}/api/lists/${listId}`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
-        navigate(`/lists/${listId}`);
+        navigate("/lists");
       });
   };
   return (
@@ -45,7 +48,6 @@ function EditListPage(props) {
         <label>
           Title:
           <input
-            type="text"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -55,7 +57,6 @@ function EditListPage(props) {
         <label>
           Description
           <textarea
-            type="text"
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -68,7 +69,7 @@ function EditListPage(props) {
             type="date"
             name="date"
             min={currentDate}
-            value={date}
+            value={date.toString().split("T")[0]}
             onChange={(e) => setDate(e.target.value)}
           />
         </label>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ListCard from "../components/ListCard";
+import AddList from "../components/AddList";
 
 const API_URL = "http://localhost:5005/api/lists";
 
@@ -24,6 +25,9 @@ function ListPage() {
     <div className="ListPage">
       <h1>ListPage</h1>
 
+      <AddList refreshList={getLists} />
+
+      {/* {isLoggedIn && */}
       {listToDisplay.map((listObj) => (
         <ListCard key={listObj._id} {...listObj} />
       ))}
