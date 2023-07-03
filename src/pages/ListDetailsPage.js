@@ -1,14 +1,18 @@
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
 const API_URL = "http://localhost:5005/api/lists";
 
+
 function ListDetailsPage() {
   const [list, setList] = useState({});
   const { listId } = useParams();
   const navigate = useNavigate();
+  const { isLoggedIn} = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
   const getOneList = () => {
     axios
@@ -47,11 +51,15 @@ function ListDetailsPage() {
           // console.log(productObj);
           return <ProductCard key={productObj._id} {...productObj} />;
         })}
-      <Link to={`/lists/edit/${listId}`}>
-        <button>Edit List</button>
-      </Link>
+      {isLoggedIn && (
+        <>
+          <Link to={`/lists/edit/${listId}`}>
+            <button>Edit List</button>
+          </Link>
 
-      <button onClick={deleteList}> Delete List </button>
+          <button onClick={deleteList}> Delete List </button>
+        </>
+      )}
     </div>
   );
 }
