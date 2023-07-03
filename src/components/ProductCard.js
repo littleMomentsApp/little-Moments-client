@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 
-function ProductCard({ title, image, description, category, price, _id }, {deleteProduct}) {
- 
+function ProductCard(
+  { title, image, description, category, price, _id },
+  { deleteProduct }
+) {
   return (
     <div className="ProductCard">
       <h3>{title}</h3>
@@ -12,8 +14,6 @@ function ProductCard({ title, image, description, category, price, _id }, {delet
       <Link to={"/lists"}>
         <button>Buy Now</button>
       </Link>
-     
-      
     </div>
   );
 }

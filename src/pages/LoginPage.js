@@ -17,21 +17,21 @@ function LoginPage(props) {
   const handlePassword = (e) => setPassword(e.target.value);
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault()
-    const requestBody = {email, password};
+    e.preventDefault();
+    const requestBody = { email, password };
 
     axios
-    .post(`${API_URL}/auth/login`, requestBody)
-    .then((response) =>{
-      console.log('JWT Token', response.data.authToken)
-      storeToken(response.data.authToken)
-      authenticateUser();
-      navigate("/")
-    })
-    .catch((error) =>{
-      const errorDescription = error.response.data.message;
-      setErrorMessage(errorDescription)
-    })
+      .post(`${API_URL}/auth/login`, requestBody)
+      .then((response) => {
+        console.log("JWT Token", response.data.authToken);
+        storeToken(response.data.authToken);
+        authenticateUser();
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
@@ -53,8 +53,9 @@ function LoginPage(props) {
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Haven't account yet?</p>
-      <Link to={"/signup"}>Sign Up</Link>
+      <p>
+        Don't have an account yet? <Link to={"/signup"}>Sign Up</Link>
+      </p>
     </div>
   );
 }

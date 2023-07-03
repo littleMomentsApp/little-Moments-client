@@ -43,8 +43,8 @@ function EditListPage(props) {
       .delete(`${API_URL}/api/products/${productId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then(() => {
-        console.log("Product deleted");
+      .then((deleted) => {
+        console.log(`Product.....${deleted}`);
       })
       .catch((err) => console.log(err));
   };
@@ -61,7 +61,7 @@ function EditListPage(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        navigate("/lists");
+        navigate(`/lists/${listId}`);
       });
   };
 
@@ -118,11 +118,14 @@ function EditListPage(props) {
         {products &&
           products.map((productObj, index) => (
             <div>
-              <ProductCard
-                key={index}
-                {...productObj}
-              />
-              <button onClick={()=>{deleteProduct(productObj._id)}}>Delete Product</button>
+              <ProductCard key={index} {...productObj} />
+              <button
+                onClick={() => {
+                  deleteProduct(productObj._id);
+                }}
+              >
+                Delete Product
+              </button>
             </div>
           ))}
         <button type="submit">Update</button>
