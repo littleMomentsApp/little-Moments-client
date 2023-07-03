@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AddProduct from "./AddProduct";
 
 const API_URL = "http://localhost:5005/api/lists";
 
@@ -67,8 +68,7 @@ function AddList({ refreshList }) {
           />
         </label>
 
-        <label>Products:</label>
-        <button type="submit">Update</button>
+        <button>Create List</button>
       </form>
     </div>
   );
