@@ -30,59 +30,7 @@ function AddProduct() {
       .catch((error) => console.log(error));
   };
 
-  return (
-    <div>
-      <h3>Create new product</h3>
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Image:
-          <input
-            name="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Description:
-          <input
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Category:
-          <input
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
-        <button type="submit">Add Product</button>
-      </form>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default AddProduct;

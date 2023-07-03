@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AddProduct from "./AddProduct";
 
 const API_URL = "http://localhost:5005/api/lists";
 

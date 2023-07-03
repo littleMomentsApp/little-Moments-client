@@ -10,6 +10,8 @@ function EditListPage(props) {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [addedProducts, setAddedProducts] = useState([]);
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
   const navigate = useNavigate();
@@ -24,13 +26,24 @@ function EditListPage(props) {
         setDescription(oneList.description);
         setDate(oneList.date);
         setProducts(oneList.products);
+        setAddedProducts([
+          ...oneList.products.map((element) => {
+            return element._id;
+          }),
+        ]);
+      })
+      .then((response) => {
+        getAllProducts();
       })
       .catch((error) => console.log(error));
   }, [listId]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { title, description, date, products };
+
+    // setProducts([...products.map((element) => element._id), ...addedProducts]);
+    const requestBody = { title, description, date, addedProducts };
+    console.log(requestBody);
 
     axios
       .put(`${API_URL}/api/lists/${listId}`, requestBody, {
@@ -40,6 +53,22 @@ function EditListPage(props) {
         navigate("/lists");
       });
   };
+
+  const getAllProducts = () => {
+    axios
+      .get(`${API_URL}/api/products`)
+      .then((allProducts) => {
+        setAllProducts(allProducts.data);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleProduct = (productId) => {
+    setAddedProducts([...addedProducts, productId]);
+  };
+
+  console.log("addedProducts >>>", addedProducts, "products >>>", products);
+
   return (
     <div className="EditListPage">
       <h3>Edit the List</h3>
@@ -81,6 +110,22 @@ function EditListPage(props) {
           ))}
         <button type="submit">Update</button>
       </form>
+
+      {allProducts.map((productO) => {
+        return (
+          <>
+            {" "}
+            <h3>{productO.title}</h3>
+            <img src={productO.image} alt="product-alt" />
+            <p>{productO.description}</p>
+            <p>{productO.category}</p>
+            <h4>Price: {productO.price}$ </h4>
+            <button onClick={() => handleProduct(productO._id)}>
+              Add Product
+            </button>
+          </>
+        );
+      })}
     </div>
   );
 }
