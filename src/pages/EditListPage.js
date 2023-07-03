@@ -14,7 +14,6 @@ function EditListPage(props) {
   const [addedProducts, setAddedProducts] = useState([]);
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
-
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
 
@@ -38,6 +37,17 @@ function EditListPage(props) {
       })
       .catch((error) => console.log(error));
   }, [listId]);
+
+  const deleteProduct = (productId) => {
+    axios
+      .delete(`${API_URL}/api/products/${productId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => {
+        console.log("Product deleted");
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -106,8 +116,14 @@ function EditListPage(props) {
 
         <label>Products:</label>
         {products &&
-          products.map((productObj) => (
-            <ProductCard key={productObj._id} {...productObj} />
+          products.map((productObj, index) => (
+            <div>
+              <ProductCard
+                key={index}
+                {...productObj}
+              />
+              <button onClick={()=>{deleteProduct(productObj._id)}}>Delete Product</button>
+            </div>
           ))}
         <button type="submit">Update</button>
       </form>
