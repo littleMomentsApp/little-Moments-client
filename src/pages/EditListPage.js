@@ -14,6 +14,7 @@ function EditListPage(props) {
   const [addedProducts, setAddedProducts] = useState([]);
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
+
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
 
@@ -67,7 +68,7 @@ function EditListPage(props) {
     setAddedProducts([...addedProducts, productId]);
   };
 
-  console.log("addedProducts >>>", addedProducts, "products >>>", products);
+  // console.log("addedProducts >>>", addedProducts, "products >>>", products);
 
   return (
     <div className="EditListPage">

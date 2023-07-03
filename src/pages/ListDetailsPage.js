@@ -44,7 +44,7 @@ function ListDetailsPage() {
       <p>{list.description}</p>
       {list.products &&
         list.products.map((productObj) => {
-          console.log(productObj);
+          // console.log(productObj);
           return <ProductCard key={productObj._id} {...productObj} />;
         })}
       <Link to={`/lists/edit/${listId}`}>
