@@ -39,17 +39,6 @@ function ListDetailsPage() {
       })
       .catch((err) => console.log(err));
   };
-  // const deleteProduct = (productId) => {
-  //   axios
-  //     .delete(`${baseUrl}/api/products/${productId}`, {
-  //       headers: { Authorization: `Bearer ${storedToken}` },
-  //     })
-  //     .then((deleted) => {
-  //       getList();
-  //       console.log(`Product.....${deleted}`);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   console.log(list.date);
 
