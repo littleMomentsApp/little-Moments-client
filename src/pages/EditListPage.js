@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+
+const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
 
 function EditListPage(props) {
   const [title, setTitle] = useState("");
@@ -12,12 +14,16 @@ function EditListPage(props) {
   const [addedProducts, setAddedProducts] = useState([]);
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
-  const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
+    getList();
+    // eslint-disable-next-line
+  }, [listId]);
+
+  const getList = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`)
+      .get(`${baseUrl}/api/lists/${listId}`)
       .then((response) => {
         const oneList = response.data;
         setTitle(oneList.title);
@@ -34,14 +40,15 @@ function EditListPage(props) {
         getAllProducts();
       })
       .catch((error) => console.log(error));
-  }, [listId]);
+  };
 
   const deleteProduct = (productId) => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/api/products/${productId}`, {
+      .delete(`${baseUrl}/api/products/${productId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((deleted) => {
+        getList();
         console.log(`Product.....${deleted}`);
       })
       .catch((err) => console.log(err));
@@ -55,17 +62,17 @@ function EditListPage(props) {
     console.log(requestBody);
 
     axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`, requestBody, {
+      .put(`${baseUrl}/api/lists/${listId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        navigate(`/lists/${listId}`);
+        getList();
       });
   };
 
   const getAllProducts = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/products`)
+      .get(`${baseUrl}/api/products`)
       .then((allProducts) => {
         setAllProducts(allProducts.data);
       })
@@ -147,5 +154,4 @@ function EditListPage(props) {
     </div>
   );
 }
-
 export default EditListPage;

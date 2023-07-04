@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
+const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+
 function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ function LoginPage(props) {
     const requestBody = { email, password };
 
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/auth/login`, requestBody)
+      .post(`${baseUrl}/auth/login`, requestBody)
       .then((response) => {
         console.log("JWT Token", response.data.authToken);
         storeToken(response.data.authToken);

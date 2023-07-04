@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005/api/lists";
+const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
 
 function AddList({ refreshList }) {
   const [title, setTitle] = useState("");
@@ -19,7 +19,7 @@ function AddList({ refreshList }) {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/api/lists`, requestBody, {
+      .post(`${baseUrl}/api/lists`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

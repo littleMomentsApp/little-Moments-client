@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
+const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+
 function ListDetailsPage() {
   const [list, setList] = useState({});
   const { listId } = useParams();
@@ -13,7 +15,7 @@ function ListDetailsPage() {
   const storedToken = localStorage.getItem("authToken");
   const getOneList = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`)
+      .get(`${baseUrl}/api/lists/${listId}`)
       .then((oneList) => {
         // console.log(oneList.data);
         setList(oneList.data);
@@ -28,7 +30,7 @@ function ListDetailsPage() {
 
   const deleteList = () => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`, {
+      .delete(`${baseUrl}/${listId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
 
@@ -38,16 +40,10 @@ function ListDetailsPage() {
       .catch((err) => console.log(err));
   };
 
+  console.log(list.date);
+
   return (
     <div className="ListDetailsPage">
-      <h3>{list.title}</h3>
-      <h4>{list.date}</h4>
-      <p>{list.description}</p>
-      {list.products &&
-        list.products.map((productObj) => {
-          // console.log(productObj);
-          return <ProductCard key={productObj._id} {...productObj} />;
-        })}
       {isLoggedIn && (
         <>
           <Link to={`/lists/edit/${listId}`}>
@@ -57,6 +53,21 @@ function ListDetailsPage() {
           <button onClick={deleteList}> Delete List </button>
         </>
       )}
+      <h3>{list.title}</h3>
+      <h4>{list.date}</h4>
+      <p>{list.description}</p>
+      {list.products &&
+        list.products.map((productObj) => {
+          // console.log(productObj);
+          return (
+            <>
+              <ProductCard key={productObj._id} {...productObj} />
+              <Link to={"/lists"}>
+                <button>Buy Now</button>
+              </Link>
+            </>
+          );
+        })}
     </div>
   );
 }

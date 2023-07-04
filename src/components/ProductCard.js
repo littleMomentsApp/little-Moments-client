@@ -1,9 +1,4 @@
-import { Link } from "react-router-dom";
-
-function ProductCard(
-  { title, image, description, category, price, _id },
-  { deleteProduct }
-) {
+function ProductCard({ title, image, description, category, price, _id }) {
   return (
     <div className="ProductCard">
       <h3>{title}</h3>
@@ -11,9 +6,6 @@ function ProductCard(
       <p>{description}</p>
       <p>{category}</p>
       <h4>Price: {price}$ </h4>
-      <Link to={"/lists"}>
-        <button>Buy Now</button>
-      </Link>
     </div>
   );
 }
