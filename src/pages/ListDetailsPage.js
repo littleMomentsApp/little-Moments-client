@@ -30,7 +30,7 @@ function ListDetailsPage() {
 
   const deleteList = () => {
     axios
-      .delete(`${baseUrl}/${listId}`, {
+      .delete(`${baseUrl}/api/lists/${listId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
 
@@ -39,6 +39,17 @@ function ListDetailsPage() {
       })
       .catch((err) => console.log(err));
   };
+  // const deleteProduct = (productId) => {
+  //   axios
+  //     .delete(`${baseUrl}/api/products/${productId}`, {
+  //       headers: { Authorization: `Bearer ${storedToken}` },
+  //     })
+  //     .then((deleted) => {
+  //       getList();
+  //       console.log(`Product.....${deleted}`);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   console.log(list.date);
 

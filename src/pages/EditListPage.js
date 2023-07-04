@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
-const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function EditListPage(props) {
   const [title, setTitle] = useState("");
@@ -20,7 +20,7 @@ function EditListPage(props) {
     getList();
     // eslint-disable-next-line
   }, [listId]);
-
+  // get details of user list
   const getList = () => {
     axios
       .get(`${baseUrl}/api/lists/${listId}`)
@@ -29,10 +29,10 @@ function EditListPage(props) {
         setTitle(oneList.title);
         setDescription(oneList.description);
         setDate(oneList.date);
-        setProducts(oneList.products);
+        setProducts(oneList.products); // array Obj products
         setAddedProducts([
           ...oneList.products.map((element) => {
-            return element._id;
+            return element._id; // array of productIds
           }),
         ]);
       })
@@ -56,8 +56,7 @@ function EditListPage(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    // setProducts([...products.map((element) => element._id), ...addedProducts]);
+    console.log("addList", addedProducts);
     const requestBody = { title, description, date, addedProducts };
     console.log(requestBody);
 
@@ -79,11 +78,10 @@ function EditListPage(props) {
       .catch((e) => console.log(e));
   };
 
-  const handleProduct = (productId) => {
-    setAddedProducts([...addedProducts, productId]);
+  const addProduct = (productId, e) => {
+    setAddedProducts((prevAddedProducts) => [...prevAddedProducts, productId]);
   };
 
-  // console.log("addedProducts >>>", addedProducts, "products >>>", products);
 
   return (
     <div className="EditListPage">
@@ -145,9 +143,11 @@ function EditListPage(props) {
             <p>{productO.description}</p>
             <p>{productO.category}</p>
             <h4>Price: {productO.price}$ </h4>
-            <button onClick={() => handleProduct(productO._id)}>
-              Add Product
-            </button>
+            <form onSubmit={handleFormSubmit}>
+              <button onClick={(e) => addProduct(productO._id, e)}>
+                Add Product
+              </button>
+            </form>
           </>
         );
       })}
