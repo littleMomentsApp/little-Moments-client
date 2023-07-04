@@ -54,6 +54,10 @@ function EditListPage(props) {
       .catch((err) => console.log(err));
   };
 
+  // const handleDelete = ({_id}) => setAddedProducts(addedProducts => addedProducts.filter((deletedProduct)=> deletedProduct._id !== _id))
+  // console.log("deleting" ,handleDelete);
+
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("addList", addedProducts);
@@ -122,6 +126,8 @@ function EditListPage(props) {
           products.map((productObj, index) => (
             <div>
               <ProductCard key={index} {...productObj} />
+              {/* <button onClick={handleDelete}
+              > */}
               <button
                 onClick={() => {
                   deleteProduct(productObj._id);
