@@ -19,7 +19,7 @@ function AddList({ refreshList }) {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .post(`${API_URL}`, requestBody, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/lists`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

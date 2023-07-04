@@ -5,8 +5,6 @@ import AddList from "../components/AddList";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = "http://localhost:5005/api/lists";
-
 function ListPage() {
   const [listToDisplay, setListToDisplay] = useState([]);
   const [isShown, setIsShown] = useState(false);
@@ -15,7 +13,7 @@ function ListPage() {
 
   const getLists = () => {
     axios
-      .get(`${API_URL}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/lists`)
       .then((response) => {
         setListToDisplay(response.data);
       })

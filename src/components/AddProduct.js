@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 
-const API_URL = "http://localhost:5005/api";
-
 function AddProduct() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -17,7 +15,7 @@ function AddProduct() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .post(`${API_URL}/products`, requestBody, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/products`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

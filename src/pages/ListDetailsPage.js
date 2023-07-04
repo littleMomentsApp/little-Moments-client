@@ -5,9 +5,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
-const API_URL = "http://localhost:5005/api/lists";
-
-
 function ListDetailsPage() {
   const [list, setList] = useState({});
   const { listId } = useParams();
@@ -16,7 +13,7 @@ function ListDetailsPage() {
   const storedToken = localStorage.getItem("authToken");
   const getOneList = () => {
     axios
-      .get(`${API_URL}/${listId}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`)
       .then((oneList) => {
         // console.log(oneList.data);
         setList(oneList.data);
@@ -31,7 +28,7 @@ function ListDetailsPage() {
 
   const deleteList = () => {
     axios
-      .delete(`${API_URL}/${listId}`, {
+      .delete(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
 

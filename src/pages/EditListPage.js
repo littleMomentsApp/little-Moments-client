@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
-const API_URL = "http://localhost:5005";
-
 function EditListPage(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +17,7 @@ function EditListPage(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/lists/${listId}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`)
       .then((response) => {
         const oneList = response.data;
         setTitle(oneList.title);
@@ -40,7 +38,7 @@ function EditListPage(props) {
 
   const deleteProduct = (productId) => {
     axios
-      .delete(`${API_URL}/api/products/${productId}`, {
+      .delete(`${process.env.REACT_APP_SERVER_URL}/api/products/${productId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((deleted) => {
@@ -57,7 +55,7 @@ function EditListPage(props) {
     console.log(requestBody);
 
     axios
-      .put(`${API_URL}/api/lists/${listId}`, requestBody, {
+      .put(`${process.env.REACT_APP_SERVER_URL}/api/lists/${listId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -67,7 +65,7 @@ function EditListPage(props) {
 
   const getAllProducts = () => {
     axios
-      .get(`${API_URL}/api/products`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/products`)
       .then((allProducts) => {
         setAllProducts(allProducts.data);
       })
