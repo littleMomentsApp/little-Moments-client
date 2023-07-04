@@ -1,14 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme.context";
 
-const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function SignUpPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const { theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
 
@@ -33,7 +36,7 @@ function SignUpPage(props) {
   };
 
   return (
-    <div className="SignupPage">
+    <div className={"SignupPage " + theme}>
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>

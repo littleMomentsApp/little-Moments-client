@@ -2,10 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { useContext } from "react";
+import { ThemeContext } from "../context/theme.context";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function EditListPage(props) {
+  const { theme } = useContext(ThemeContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -54,9 +57,8 @@ function EditListPage(props) {
       .catch((err) => console.log(err));
   };
 
-  // const handleDelete = ({_id}) => setAddedProducts(addedProducts => addedProducts.filter((deletedProduct)=> deletedProduct._id !== _id))
+  //const handleDelete = ({_id}) => setAddedProducts(addedProducts => addedProducts.filter((deletedProduct)=> deletedProduct._id !== _id))
   // console.log("deleting" ,handleDelete);
-
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -82,13 +84,12 @@ function EditListPage(props) {
       .catch((e) => console.log(e));
   };
 
-  const addProduct = (productId, e) => {
-    setAddedProducts((prevAddedProducts) => [...prevAddedProducts, productId]);
+  const addProduct = (productId) => {
+    setAddedProducts([productId, ...addedProducts]);
   };
 
-
   return (
-    <div className="EditListPage">
+    <div className={"EditListPage " + theme}>
       <h3>Edit the List</h3>
 
       <form onSubmit={handleFormSubmit}>
@@ -124,8 +125,8 @@ function EditListPage(props) {
         <label>Products:</label>
         {products &&
           products.map((productObj, index) => (
-            <div>
-              <ProductCard key={index} {...productObj} />
+            <div key={index}>
+              <ProductCard {...productObj} />
               {/* <button onClick={handleDelete}
               > */}
               <button
@@ -137,24 +138,30 @@ function EditListPage(props) {
               </button>
             </div>
           ))}
+        <br />
+        <hr />
         <button type="submit">Update</button>
+        <hr />
+        <br />
       </form>
 
-      {allProducts.map((productO) => {
+      {allProducts.map((productO, index) => {
         return (
-          <>
-            {" "}
+          <ul key={index}>
             <h3>{productO.title}</h3>
-            <img src={productO.image} alt="product-alt" />
+            <img src={productO.imageURL} alt="product-alt" />
             <p>{productO.description}</p>
+            <h4>{productO.quantity}</h4>
             <p>{productO.category}</p>
             <h4>Price: {productO.price}$ </h4>
-            <form onSubmit={handleFormSubmit}>
-              <button onClick={(e) => addProduct(productO._id, e)}>
-                Add Product
-              </button>
-            </form>
-          </>
+            <button
+              onClick={(e) => {
+                return addProduct(productO._id, e);
+              }}
+            >
+              Add to List
+            </button>
+          </ul>
         );
       })}
     </div>

@@ -4,14 +4,16 @@ import ListCard from "../components/ListCard";
 import AddList from "../components/AddList";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { ThemeContext } from "../context/theme.context";
 
-const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function ListPage() {
   const [listToDisplay, setListToDisplay] = useState([]);
   const [isShown, setIsShown] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
 
   const getLists = () => {
     axios
@@ -31,7 +33,7 @@ function ListPage() {
   };
 
   return (
-    <div className="ListPage">
+    <div className={"ListPage " + theme}>
       <h1>ListPage</h1>
       {isLoggedIn && (
         <div>

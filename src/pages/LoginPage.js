@@ -2,13 +2,15 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import { ThemeContext } from "../context/theme.context";
 
-const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const { theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -35,7 +37,7 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
+    <div className={"LoginPage " + theme}>
       <h1>Login</h1>
       <form onSubmit={handleLoginSubmit}>
         <label>Email:</label>

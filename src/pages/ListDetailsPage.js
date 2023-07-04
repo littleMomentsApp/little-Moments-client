@@ -4,14 +4,16 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import { ThemeContext } from "../context/theme.context";
 
-const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function ListDetailsPage() {
+  const { theme } = useContext(ThemeContext);
   const [list, setList] = useState({});
   const { listId } = useParams();
   const navigate = useNavigate();
-  const { isLoggedIn} = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
   const getOneList = () => {
     axios
@@ -43,7 +45,7 @@ function ListDetailsPage() {
   console.log(list.date);
 
   return (
-    <div className="ListDetailsPage">
+    <div className={"ListDetailsPage " + theme}>
       {isLoggedIn && (
         <>
           <Link to={`/lists/edit/${listId}`}>
@@ -62,9 +64,8 @@ function ListDetailsPage() {
           return (
             <>
               <ProductCard key={productObj._id} {...productObj} />
-              <Link to={"/lists"}>
-                <button>Buy Now</button>
-              </Link>
+
+              <button>Buy Now</button>
             </>
           );
         })}
