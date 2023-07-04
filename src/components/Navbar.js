@@ -16,13 +16,9 @@ function Navbar() {
       <Link to="/lists">
         <button>Lists</button>
       </Link>
-      <button className="theme-btn" onClick={toggleTheme}>
-        {theme === "light" ? "dark 🌜" : "light 🟡"}
-      </button>
       {isLoggedIn && (
         <>
           <button onClick={logOutUser}>Logout</button>
-          <hr />
         </>
       )}
 
@@ -34,10 +30,12 @@ function Navbar() {
           <Link to="/signup">
             <button>SignUp</button>
           </Link>
-          <br />
-          <hr />
         </>
       )}
+
+      <button className="theme-btn" onClick={toggleTheme}>
+        {theme === "light" ? "dark 🌜" : "light 🟡"}
+      </button>
     </nav>
   );
 }

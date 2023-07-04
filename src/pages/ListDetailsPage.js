@@ -11,10 +11,12 @@ const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 function ListDetailsPage() {
   const { theme } = useContext(ThemeContext);
   const [list, setList] = useState({});
+  const [updatedQuantity, setUpdatedQuantity] = useState(null);
   const { listId } = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
+
   const getOneList = () => {
     axios
       .get(`${baseUrl}/api/lists/${listId}`)
@@ -30,6 +32,30 @@ function ListDetailsPage() {
     // eslint-disable-next-line
   }, []);
 
+  const handleBuyNow = (prodId, quantityNow) => {
+    if (quantityNow > 0) {
+      const newQuantity = quantityNow - 1;
+      console.log("newQuantity.......", newQuantity);
+
+      axios
+        .put(
+          `${baseUrl}/api/products/${prodId}`,
+          { quantity: newQuantity },
+          { new: true }
+        )
+        .then((response) => {
+          setUpdatedQuantity(response.data.quantity);
+          getOneList();
+          console.log(updatedQuantity);
+        })
+        .catch((err) => {
+          console.log("failed to updated quantity..", err);
+        });
+    } else {
+      console.log("Quantity = 0, no products available");
+    }
+  };
+
   const deleteList = () => {
     axios
       .delete(`${baseUrl}/api/lists/${listId}`, {
@@ -38,11 +64,10 @@ function ListDetailsPage() {
 
       .then((response) => {
         navigate("/lists");
+        console.log("list deleted....", listId);
       })
       .catch((err) => console.log(err));
   };
-
-  console.log(list.date);
 
   return (
     <div className={"ListDetailsPage " + theme}>
@@ -64,8 +89,17 @@ function ListDetailsPage() {
           return (
             <>
               <ProductCard key={productObj._id} {...productObj} />
-
-              <button>Buy Now</button>
+              {productObj.quantity > 0 ? (
+                <button
+                  onClick={(e) => {
+                    handleBuyNow(productObj._id, productObj.quantity);
+                  }}
+                >
+                  Buy Now
+                </button>
+              ) : (
+                <h3>Not Available</h3>
+              )}
             </>
           );
         })}
