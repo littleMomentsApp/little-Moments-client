@@ -45,20 +45,10 @@ function EditListPage(props) {
       .catch((error) => console.log(error));
   };
 
-  const deleteProduct = (productId) => {
-    axios
-      .delete(`${baseUrl}/api/products/${productId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((deleted) => {
-        getList();
-        console.log(`Product.....${deleted}`);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  //const handleDelete = ({_id}) => setAddedProducts(addedProducts => addedProducts.filter((deletedProduct)=> deletedProduct._id !== _id))
-  // console.log("deleting" ,handleDelete);
+  function handleDelete(pizza) {
+    const newProduct = addedProducts.filter((element) => element !== pizza);
+    setAddedProducts(newProduct);
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -131,10 +121,10 @@ function EditListPage(props) {
               > */}
               <button
                 onClick={() => {
-                  deleteProduct(productObj._id);
+                  handleDelete(productObj._id);
                 }}
               >
-                Delete Product
+                Remove Product
               </button>
             </div>
           ))}

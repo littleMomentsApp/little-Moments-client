@@ -10,12 +10,8 @@ function Navbar() {
 
   return (
     <nav className={"Navbar " + theme}>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
-      <Link to="/lists">
-        <button>Lists</button>
-      </Link>
+      <Link to="/">Home</Link>
+      <Link to="/lists">Lists</Link>
       {isLoggedIn && (
         <>
           <button onClick={logOutUser}>Logout</button>
@@ -24,12 +20,8 @@ function Navbar() {
 
       {!isLoggedIn && (
         <>
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
-          <Link to="/signup">
-            <button>SignUp</button>
-          </Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">SignUp</Link>
         </>
       )}
 
