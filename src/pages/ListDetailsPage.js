@@ -88,11 +88,11 @@ function ListDetailsPage() {
         list.products.map((productObj) => {
           // console.log(productObj);
           return (
-            <>
-            
-              <ProductCard key={productObj._id} {...productObj} handleBuy={handleBuyNow} />
-              
-            </>
+            <ProductCard
+              key={productObj._id}
+              {...productObj}
+              handleBuy={handleBuyNow}
+            />
           );
         })}
     </div>
