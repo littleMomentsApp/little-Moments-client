@@ -24,14 +24,14 @@ code {
   font-weight: 600;
   border-bottom: 1px solid #000000a8;
 }
-.Navbar button {
+/* .Navbar button {
   background-color: #C3C1AB;
   color: #000000a8;
   border: 4px solid #C3C1AB;
   border-radius: 3px;
   width: 100px;
   height: 30px;
-}
+} */
 
 .Navbar a {
   list-style: none;
