@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const API_URL = "http://localhost:5005/api";
 
@@ -9,7 +9,25 @@ function AddProduct({ refreshList }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
   const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = (e) => {
+    axios.get(`${API_URL}/product-category`).then((enumArr) => {
+      setCategories(enumArr.data);
+      console.log("this is the enumArr...", enumArr.data);
+    });
+
+    console.log("this is the response...", categories);
+  };
+
+  const handleChange = (selected) => {
+    setCategory(selected);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,12 +101,24 @@ function AddProduct({ refreshList }) {
         </label>
 
         <label>
+          {/* {categories.map(element => {
+
+          })
+          } */}
           Category:
-          <input
-            name="category"
+          <select
             value={category}
+            placeholder="Select"
             onChange={(e) => setCategory(e.target.value)}
-          />
+          >
+            {categories.map((element, index) => {
+              return (
+                <option key={index} value={element}>
+                  {element}
+                </option>
+              );
+            })}
+          </select>
         </label>
 
         <label>
