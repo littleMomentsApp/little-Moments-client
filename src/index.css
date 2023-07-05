@@ -89,7 +89,7 @@ code {
 .dark .theme-btn {
   color: #ffffff;
 }
-<<<<<<< HEAD
+
 /* 
 .ProductCard {
 =======
@@ -116,7 +116,6 @@ code {
     display: flex;
     flex-direction: column;
     justify-content: center;
-<<<<<<< HEAD
   }
 .AddProduct {
   display: flex;
@@ -139,6 +138,3 @@ code {
 .ProductCardDiv button {
   height: 30px;
 } */
-=======
-  } */
->>>>>>> cacd602 (implement styling)

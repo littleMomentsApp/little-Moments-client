@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 function ListCard({ title, description, date, _id }) {
   return (
