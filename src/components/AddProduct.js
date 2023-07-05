@@ -3,17 +3,25 @@ import { useState } from "react";
 
 const API_URL = "http://localhost:5005/api";
 
-function AddProduct() {
+function AddProduct({ refreshList }) {
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
+  const [imageURL, setImageURL] = useState("");
   const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { title, image, description, category, price };
+    const requestBody = {
+      title,
+      imageURL,
+      description,
+      quantity,
+      category,
+      price,
+    };
     const storedToken = localStorage.getItem("authToken");
 
     axios
@@ -22,10 +30,12 @@ function AddProduct() {
       })
       .then((response) => {
         setTitle("");
-        setImage("");
+        setImageURL("");
         setDescription("");
+        setQuantity(0);
         setCategory("");
         setPrice(0);
+        refreshList();
       })
       .catch((error) => console.log(error));
   };
@@ -48,8 +58,8 @@ function AddProduct() {
           Image:
           <input
             name="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            value={imageURL}
+            onChange={(e) => setImageURL(e.target.value)}
           />
         </label>
 
@@ -61,6 +71,17 @@ function AddProduct() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
+
+        <label>
+          Quantity:
+          <input
+            type="number"
+            name="quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </label>
+
         <label>
           Category:
           <input
