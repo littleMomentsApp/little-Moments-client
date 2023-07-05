@@ -1,3 +1,5 @@
+import { Card, Button } from "react-bootstrap";
+
 function ProductCard({
   title,
   imageURL,
@@ -6,15 +8,31 @@ function ProductCard({
   category,
   price,
   _id,
+  handleBuy,
 }) {
   return (
     <div className="ProductCard">
+      <Card border="secondary" style={{width:"18rem"}}>
       <img className="imageProduct" src={imageURL} alt="product-alt" />
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <h4>Quantity: {quantity}</h4>
-      <p>{category}</p>
-      <h4>Price: {price}$ </h4>
+      <Card.Body>
+      <Card.Title>{title}</Card.Title>
+      <Card.Text>{description}</Card.Text>
+      <Card.Text> <b>Quantity:</b> {quantity}</Card.Text>
+      <Card.Text>{category}</Card.Text>
+      <Card.Text><b>Price:</b> {price}$ </Card.Text>
+      </Card.Body>
+      {quantity > 0 ? (
+                <Button
+                  onClick={(e) => {
+                    handleBuy(_id, quantity);
+                  }}
+                >
+                  Buy Now
+                </Button>
+              ) : (
+                <h3>Not Available</h3>
+              )}
+      </Card>
     </div>
   );
 }

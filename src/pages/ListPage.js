@@ -5,6 +5,7 @@ import AddList from "../components/AddList";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context";
+import { Button } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -33,20 +34,27 @@ function ListPage() {
   };
 
   return (
-    <div className={"ListPage " + theme}>
-      <h1>ListPage</h1>
-      {isLoggedIn && (
-        <div>
-          <button onClick={handleClick}>Create a List</button>
-          {isShown ? <AddList refreshList={getLists} /> : null}
+    <>
+    {isLoggedIn && (
+      <div className="mb-5">
+        <h1>ListPage</h1>
+        <Button onClick={handleClick}>Create a List</Button>
+        {isShown ? <AddList refreshList={getLists} /> : null}      
         </div>
+
       )}
+     
+    <div style={{display: "flex", flexDirection: "row"}} className={"gap-5 ListPage " + theme}>
+    
+      
       {/* {isLoggedIn && */}
       {listToDisplay.map((listObj) => (
         <ListCard key={listObj._id} {...listObj} />
       ))}
     </div>
+    </>
   );
 }
+
 
 export default ListPage;

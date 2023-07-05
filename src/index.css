@@ -89,12 +89,19 @@ code {
 .dark .theme-btn {
   color: #ffffff;
 }
+<<<<<<< HEAD
 /* 
 .ProductCard {
+=======
+
+
+
+/* .ProductCard {
+>>>>>>> cacd602 (implement styling)
   width: 300px;
   height: 550px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
+} */
 
 .imageProduct{
   width: 200px;
@@ -102,13 +109,14 @@ code {
   margin-top: 20px;
 }
 
-.ListCard {
+/* .ListCard {
     width: 300px;
     height: 250px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
+<<<<<<< HEAD
   }
 .AddProduct {
   display: flex;
@@ -131,3 +139,6 @@ code {
 .ProductCardDiv button {
   height: 30px;
 } */
+=======
+  } */
+>>>>>>> cacd602 (implement styling)

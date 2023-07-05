@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { ThemeContext } from "../context/theme.context";
+import { Button } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -74,10 +75,10 @@ function ListDetailsPage() {
       {isLoggedIn && (
         <>
           <Link to={`/lists/edit/${listId}`}>
-            <button>Edit List</button>
+            <Button>Edit List</Button>
           </Link>
 
-          <button onClick={deleteList}> Delete List </button>
+          <Button onClick={deleteList}> Delete List </Button>
         </>
       )}
       <h3>{list.title}</h3>
@@ -88,18 +89,9 @@ function ListDetailsPage() {
           // console.log(productObj);
           return (
             <>
-              <ProductCard key={productObj._id} {...productObj} />
-              {productObj.quantity > 0 ? (
-                <button
-                  onClick={(e) => {
-                    handleBuyNow(productObj._id, productObj.quantity);
-                  }}
-                >
-                  Buy Now
-                </button>
-              ) : (
-                <h3>Not Available</h3>
-              )}
+            
+              <ProductCard key={productObj._id} {...productObj} handleBuy={handleBuyNow} />
+              
             </>
           );
         })}

@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
+import { Card, Button, Row, Col } from "react-bootstrap";
 
 function ListCard({ title, description, date, _id }) {
   return (
-    <div className="ListCard">
-      <h3>{title}</h3>
+    
+   
+    <Card border="secondary" style={{width:"18rem"}}>
+      <Card.Body>
+      <Card.Title>{title}</Card.Title>
       <h4>{date.toString().split("T")[0]}</h4>
-      <p>{description}</p>
+      <Card.Text>{description}</Card.Text>
       <Link to={`/lists/${_id}`}>
-        <button>Details</button>
+        <Button>Details</Button>
       </Link>
-    </div>
+      </Card.Body>
+    </Card>
+  
   );
 }
 
