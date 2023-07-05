@@ -14,7 +14,9 @@ function Navbar() {
       <Link to="/lists">Lists</Link>
       {isLoggedIn && (
         <>
-          <button onClick={logOutUser}>Logout</button>
+          <button className="theme-btn" onClick={logOutUser}>
+            Logout
+          </button>
         </>
       )}
 

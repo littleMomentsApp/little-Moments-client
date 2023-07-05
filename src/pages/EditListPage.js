@@ -97,7 +97,6 @@ function EditListPage(props) {
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
-
         <label>
           Description
           <textarea
@@ -106,7 +105,6 @@ function EditListPage(props) {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
-
         <label>
           Date:
           <input
@@ -117,11 +115,10 @@ function EditListPage(props) {
             onChange={(e) => setDate(e.target.value)}
           />
         </label>
-
         <label>Products:</label>
         {products &&
           products.map((productObj, index) => (
-            <div key={index}>
+            <div key={index} className="ProductCardDiv">
               <ProductCard {...productObj} />
               {/* <button onClick={handleDelete}
               > */}
@@ -135,13 +132,11 @@ function EditListPage(props) {
             </div>
           ))}
         <br />
-        <hr />
         <button type="submit">Update</button>
-        <hr />
-        <br />
+        <br /> <br />
       </form>
 
-      <div>
+      <div className="AddProduct">
         <button onClick={handleClickAdd}>Create a Product</button>
         {isShown ? <AddProduct refreshList={getList} /> : null}
       </div>

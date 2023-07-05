@@ -89,12 +89,10 @@ code {
 .dark .theme-btn {
   color: #ffffff;
 }
-
-
-
+/* 
 .ProductCard {
   width: 300px;
-  height: 500px;
+  height: 550px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -112,3 +110,24 @@ code {
     flex-direction: column;
     justify-content: center;
   }
+.AddProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #252526;
+  align-items: center;
+  padding: 10px 30px ;
+}
+.AddProduct label {
+  padding: 10px;
+}
+
+.ProductCardDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.ProductCardDiv button {
+  height: 30px;
+} */

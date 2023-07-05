@@ -41,7 +41,7 @@ function AddProduct({ refreshList }) {
   };
 
   return (
-    <div>
+    <>
       <h3>Create new product</h3>
 
       <form onSubmit={handleSubmit}>
@@ -102,7 +102,7 @@ function AddProduct({ refreshList }) {
         </label>
         <button type="submit">Add Product</button>
       </form>
-    </div>
+    </>
   );
 }
 
