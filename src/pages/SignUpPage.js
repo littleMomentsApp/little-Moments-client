@@ -1,17 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { ThemeContext } from "../context/theme.context";
+import { useNavigate } from "react-router-dom";
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBIcon,
 } from "mdb-react-ui-kit";
 import { Button } from "react-bootstrap";
 
@@ -22,8 +18,6 @@ function SignUpPage(props) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const { theme } = useContext(ThemeContext);
-
   const navigate = useNavigate();
 
   const handleEmail = (e) => setEmail(e.target.value);

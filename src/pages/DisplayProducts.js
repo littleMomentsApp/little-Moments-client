@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../context/theme.context";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
@@ -10,7 +9,6 @@ import Search from "../components/Search";
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function DisplayProducts(props) {
-  const { theme } = useContext(ThemeContext);
   const { isLoggedIn } = useContext(AuthContext);
 
   const [allProducts, setAllProducts] = useState([]);

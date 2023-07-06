@@ -4,7 +4,6 @@ import ListCard from "../components/ListCard";
 import AddList from "../components/AddList";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { ThemeContext } from "../context/theme.context";
 import { Button } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
@@ -14,7 +13,6 @@ function ListPage() {
   const [isShown, setIsShown] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
-  const { theme } = useContext(ThemeContext);
 
   const getLists = () => {
     axios
