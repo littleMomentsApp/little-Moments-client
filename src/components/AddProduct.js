@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import service from "../api/service";
+import { Button } from "react-bootstrap";
 
 const API_URL = "http://localhost:5005/api";
 
@@ -106,6 +107,8 @@ function AddProduct({ refreshProducts }) {
           <input
             type="number"
             name="quantity"
+            min={0}
+            max={50}
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
@@ -138,11 +141,14 @@ function AddProduct({ refreshProducts }) {
           <input
             type="number"
             name="price"
+            min={0}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
         </label>
-        <button type="submit">Add Product</button>
+        <Button variant="outline-success" type="submit">
+          Add Product
+        </Button>
       </form>
     </>
   );

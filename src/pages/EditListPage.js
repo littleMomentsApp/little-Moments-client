@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import { Button } from "react-bootstrap";
+import { Button, Row, Col, Container, Card } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -12,7 +12,7 @@ function EditListPage(props) {
   const [date, setDate] = useState("");
   const [products, setProducts] = useState([]); // my
   const [allProducts, setAllProducts] = useState([]); // all DB
-  const [addedProducts, setAddedProducts] = useState([]);// array ids my products
+  const [addedProducts, setAddedProducts] = useState([]); // array ids my products
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
   const storedToken = localStorage.getItem("authToken");
@@ -73,8 +73,10 @@ function EditListPage(props) {
   };
 
   const addProduct = (productId) => {
-    const addingOne = allProducts.filter((element) => element._id === productId)
-    setProducts([...addingOne, ...products])
+    const addingOne = allProducts.filter(
+      (element) => element._id === productId
+    );
+    setProducts([...addingOne, ...products]);
   };
 
   return (
@@ -108,43 +110,61 @@ function EditListPage(props) {
             onChange={(e) => setDate(e.target.value)}
           />
         </label>
-        <label>Products:</label>
-        {/* MY PRODUCTS */}
-        {products &&
-          products.map((productObj, index) => (
-            <div key={index} className="ProductCardDiv">
-              <ProductCard {...productObj}
-              list = {listId}
-              deleteProduct={handleDelete}
-              />
-             
-             
-            </div>
-          ))}
-        <br />
-        <Button variant="outline-secondary" type="submit">Update</Button>
-        <br /> <br />
+        <Container>
+          <Row>
+            <label>Products:</label>
+            {/* MY PRODUCTS */}
+            {products &&
+              products.map((productObj, index) => (
+                <Col xs={3} md={6} key={index}>
+                  <ProductCard
+                    {...productObj}
+                    list={listId}
+                    deleteProduct={handleDelete}
+                  />
+                </Col>
+              ))}
+            <br />
+            <Button variant="outline-secondary" type="submit">
+              Update
+            </Button>
+            <br /> <br />
+          </Row>
+        </Container>
       </form>
-
-      {allProducts.map((productO, index) => {
-        return (
-          <ul key={index}>
-            <h3>{productO.title}</h3>
-            <img className="imageProduct" src={productO.imageURL} alt="product-alt" />
-            <p>{productO.description}</p>
-            <h4>{productO.quantity}</h4>
-            <p>{productO.category}</p>
-            <h4>Price: {productO.price}$ </h4>
-            <button
-              onClick={(e) => {
-                return addProduct(productO._id, e);
-              }}
-            >
-              Add to List
-            </button>
-          </ul>
-        );
-      })}
+      <Container>
+        <Row>
+          {allProducts.map((productO, index) => {
+            return (
+              <Col xs={3} md={6} key={index}>
+                <Card className="m-4" border="secondary">
+                  <Card.Img variant="top" src={productO.imageURL} />
+                  <Card.Body>
+                    <Card.Title>{productO.title}</Card.Title>
+                    <Card.Text>{productO.description}</Card.Text>
+                    <Card.Text>
+                      {" "}
+                      <b>Quantity:</b> {productO.quantity}
+                    </Card.Text>
+                    <Card.Text>{productO.category}</Card.Text>
+                    <Card.Text>
+                      <b>Price:</b> {productO.price}${" "}
+                    </Card.Text>
+                    <Button
+                      variant="outline-success"
+                      onClick={(e) => {
+                        return addProduct(productO._id, e);
+                      }}
+                    >
+                      Add to List
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 }

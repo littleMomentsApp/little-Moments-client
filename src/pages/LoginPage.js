@@ -3,6 +3,17 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context";
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBIcon,
+} from "mdb-react-ui-kit";
+import { Button } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -10,7 +21,6 @@ function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const { theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -37,27 +47,69 @@ function LoginPage(props) {
   };
 
   return (
-    <div className={"LoginPage " + theme}>
-      <h1>Login</h1>
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+    <div>
+      <MDBContainer fluid>
+        <MDBRow className="d-flex justify-content-center align-items-center h-100">
+          <MDBCol col="12">
+            <MDBCard
+              className="bg-blue text-white my-5 mx-auto"
+              style={{ borderRadius: "1rem", maxWidth: "400px" }}
+            >
+              <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
+                <h2 className="fw-bold mb-2 text-uppercase text-black">
+                  Login
+                </h2>
+                <p className="text-black-50 mb-5">
+                  Please enter your login and password!
+                </p>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+                <MDBInput
+                  wrapperClass="mb-4 mx-5 w-100"
+                  labelClass="text-black"
+                  label="Email address"
+                  id="formControlLg"
+                  type="email"
+                  size="lg"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={handleEmail}
+                />
+                <MDBInput
+                  wrapperClass="mb-4 mx-5 w-100"
+                  labelClass="text-black"
+                  label="Password"
+                  id="formControlLg"
+                  type="password"
+                  size="lg"
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={handlePassword}
+                />
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>
-        Don't have an account yet? <Link to={"/signup"}>Sign Up</Link>
-      </p>
+                <p className="small mb-3 pb-lg-2">
+                  <a class="text-black-50" href="#!">
+                    Forgot password?
+                  </a>
+                </p>
+                <Button variant="info" onClick={handleLoginSubmit}>
+                  Login
+                </Button>
+                <div>
+                  <p className="mb-0 text-black">
+                    Don't have an account?{" "}
+                    <a href="/signup" class="text-black-50 fw-bold">
+                      Sign Up
+                    </a>
+                  </p>
+                  {errorMessage && (
+                    <p className="error-message">{errorMessage}</p>
+                  )}
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     </div>
   );
 }

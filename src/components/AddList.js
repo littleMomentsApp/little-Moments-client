@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-const baseUrl = process.env.REACT_APP_SERVER_URL || '/'
+const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function AddList({ refreshList }) {
   const [title, setTitle] = useState("");
@@ -68,8 +68,9 @@ function AddList({ refreshList }) {
           />
         </label>
 
-        <Button>Create List</Button>
-        
+        <Button variant="outline-success" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );

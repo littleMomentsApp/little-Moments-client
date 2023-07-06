@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row, Container } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -76,22 +76,30 @@ function ListDetailsPage() {
             <Button variant="success">Edit List</Button>
           </Link>
 
-          <Button variant="warning" onClick={deleteList}> Delete List </Button>
+          <Button variant="warning" onClick={deleteList}>
+            {" "}
+            Delete List{" "}
+          </Button>
         </>
       )}
       <h3>{list.title}</h3>
-      {list.products &&
-        list.products.map((productObj) => {
-          // console.log(productObj);
-          return (
-            <ProductCard
-              key={productObj._id}
-              {...productObj}
-              list={listId}
-              handleBuy={handleBuyNow}
-            />
-          );
-        })}
+      <Container>
+        <Row>
+          {list.products &&
+            list.products.map((productObj, index) => {
+              // console.log(productObj);
+              return (
+                <Col xs={3} md={6} key={index}>
+                  <ProductCard
+                    {...productObj}
+                    list={listId}
+                    handleBuy={handleBuyNow}
+                  />
+                </Col>
+              );
+            })}
+        </Row>
+      </Container>
     </div>
   );
 }

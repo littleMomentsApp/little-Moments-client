@@ -4,8 +4,8 @@ import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import AddProduct from "../components/AddProduct";
-import { Button } from "react-bootstrap";
-import Search from '../components/Search';
+import { Button, Row, Container, Col } from "react-bootstrap";
+import Search from "../components/Search";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -26,7 +26,7 @@ function DisplayProducts(props) {
       .get(`${baseUrl}/api/products`)
       .then((response) => {
         setAllProducts(response.data);
-        setUpdatedProducts(response.data)
+        setUpdatedProducts(response.data);
         // console.log(response.data);
       })
       .catch((e) => console.log("error to get all products to display...", e));
@@ -50,17 +50,27 @@ function DisplayProducts(props) {
 
   return (
     <div>
-     <Search filterProductHandler={filterProductList} />
+      <Search filterProductHandler={filterProductList} />
 
       <div className="AddProduct">
         {isLoggedIn && (
-          <Button variant="outline-info" onClick={handleClickAdd}>Create a Product</Button>
+          <Button variant="secondary" onClick={handleClickAdd} className="mt-3">
+            Create a Product
+          </Button>
         )}
-        {isShown ? <AddProduct refreshProducts={filterProductList} /> : null}
+        {isShown ? <AddProduct refreshProducts={getAllProducts} /> : null}
       </div>
-      {updatedProducts.map((productObj, index) => {
-        return <ProductCard {...productObj} />;
-      })}
+      <Container>
+        <Row>
+          {updatedProducts.map((productObj, index) => {
+            return (
+              <Col xs={3} md={6} key={index}>
+                <ProductCard {...productObj} />
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 }

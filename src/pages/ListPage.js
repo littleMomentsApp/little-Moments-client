@@ -35,26 +35,27 @@ function ListPage() {
 
   return (
     <>
-    {isLoggedIn && (
-      <div className="list-page">
-        <h1>ListPage</h1>
-        <Button variant="secondary" onClick={handleClick}>Create a List</Button>
-        {isShown ? <AddList refreshList={getLists} /> : null}      
+      {isLoggedIn && (
+        <div className="list-page">
+          <h1>ListPage</h1>
+          <Button variant="secondary" onClick={handleClick}>
+            Create a List
+          </Button>
+          {isShown ? <AddList refreshList={getLists} /> : null}
         </div>
-
       )}
-     
-    <div style={{display: "flex", flexDirection: "row"}} className={"gap-5 ListPage" + theme}>
-    
-      
-      {/* {isLoggedIn && */}
-      {listToDisplay.map((listObj) => (
-        <ListCard key={listObj._id} {...listObj} />
-      ))}
-    </div>
+
+      <div
+        style={{ display: "flex", flexDirection: "row" }}
+        className={"gap-5 pt-5 mt-5 d-flex justify-content-center ListPage"}
+      >
+        {/* {isLoggedIn && */}
+        {listToDisplay.map((listObj) => (
+          <ListCard key={listObj._id} {...listObj} />
+        ))}
+      </div>
     </>
   );
 }
-
 
 export default ListPage;
