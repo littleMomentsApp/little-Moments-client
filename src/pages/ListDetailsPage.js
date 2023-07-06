@@ -91,6 +91,7 @@ function ListDetailsPage() {
             <ProductCard
               key={productObj._id}
               {...productObj}
+              list={listId}
               handleBuy={handleBuyNow}
             />
           );

@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import service from "../api/service";
 
 const API_URL = "http://localhost:5005/api";
 
-function AddProduct({ refreshList }) {
+function AddProduct({ refreshProducts }) {
   const [title, setTitle] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [description, setDescription] = useState("");
@@ -14,19 +15,33 @@ function AddProduct({ refreshList }) {
 
   useEffect(() => {
     getCategories();
+    // eslint-disable-next-line
   }, []);
 
   const getCategories = (e) => {
     axios.get(`${API_URL}/product-category`).then((enumArr) => {
       setCategories(enumArr.data);
-      console.log("this is the enumArr...", enumArr.data);
+      //console.log("this is the enumArr...", enumArr.data);
     });
-
-    console.log("this is the response...", categories);
   };
 
-  const handleChange = (selected) => {
-    setCategory(selected);
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageURL", e.target.files[0]);
+
+    service
+      .uploadImage(uploadData)
+      .then((response) => {
+        // console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setImageURL(response.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
   };
 
   const handleSubmit = (e) => {
@@ -53,7 +68,7 @@ function AddProduct({ refreshList }) {
         setQuantity(0);
         setCategory("");
         setPrice(0);
-        refreshList();
+        refreshProducts();
       })
       .catch((error) => console.log(error));
   };
@@ -74,11 +89,7 @@ function AddProduct({ refreshList }) {
 
         <label>
           Image:
-          <input
-            name="image"
-            value={imageURL}
-            onChange={(e) => setImageURL(e.target.value)}
-          />
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
         </label>
 
         <label>

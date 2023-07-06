@@ -7,7 +7,8 @@ import EditListPage from "./pages/EditListPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ListDetailsPage from "./pages/ListDetailsPage";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import DisplayProducts from "./pages/DisplayProducts";
 
 function App() {
   return (
@@ -17,12 +18,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/lists" element={<ListPage />} />
+        <Route path="/products" element={<DisplayProducts />} />
         <Route path="/lists/:listId" element={<ListDetailsPage />} />
         <Route path="/lists/edit/:listId" element={<EditListPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
-      
     </div>
   );
 }

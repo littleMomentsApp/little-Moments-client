@@ -4,13 +4,11 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { useContext } from "react";
 import { ThemeContext } from "../context/theme.context";
-import AddProduct from "../components/AddProduct";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function EditListPage(props) {
   const { theme } = useContext(ThemeContext);
-  const [isShown, setIsShown] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -80,10 +78,6 @@ function EditListPage(props) {
     setAddedProducts([productId, ...addedProducts]);
   };
 
-  const handleClickAdd = (e) => {
-    setIsShown((current) => !current);
-  };
-
   return (
     <div className={"EditListPage " + theme}>
       <h3>Edit the List</h3>
@@ -135,11 +129,6 @@ function EditListPage(props) {
         <button type="submit">Update</button>
         <br /> <br />
       </form>
-
-      <div className="AddProduct">
-        <button onClick={handleClickAdd}>Create a Product</button>
-        {isShown ? <AddProduct refreshList={getList} /> : null}
-      </div>
 
       {allProducts.map((productO, index) => {
         return (

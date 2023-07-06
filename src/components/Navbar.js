@@ -10,18 +10,27 @@ function Navbar() {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  
-  const routeChangeHome=()=> {
-    navigate("/")
-  }
-  const routeChangeLists=()=> {
-    navigate("/lists")
-  }
+  const routeChangeHome = () => {
+    navigate("/");
+  };
+  const routeChangeLists = () => {
+    navigate("/lists");
+  };
+  const routeChangeProducts = () => {
+    navigate("/products");
+  };
 
   return (
     <nav className={"Navbar " + theme}>
-      <Button variant="secondary" onClick={routeChangeHome}>Home</Button>
-      <Button variant="secondary" onClick={routeChangeLists}>Lists</Button>
+      <Button variant="secondary" onClick={routeChangeHome}>
+        Home
+      </Button>
+      <Button variant="secondary" onClick={routeChangeLists}>
+        Lists
+      </Button>
+      <Button variant="secondary" onClick={routeChangeProducts}>
+        Products
+      </Button>
       {isLoggedIn && (
         <>
           <Button variant="secondary" onClick={logOutUser}>
