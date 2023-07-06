@@ -11,7 +11,7 @@ function ListCard({ title, description, date, _id }) {
       <h4>{date.toString().split("T")[0]}</h4>
       <Card.Text>{description}</Card.Text>
       <Link to={`/lists/${_id}`}>
-        <Button variant="secondary">Details</Button>
+        <Button variant="outline-info">Details</Button>
       </Link>
       </Card.Body>
     </Card>

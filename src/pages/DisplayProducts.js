@@ -5,6 +5,7 @@ import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import AddProduct from "../components/AddProduct";
 import { Button } from "react-bootstrap";
+import Search from '../components/Search';
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -14,7 +15,7 @@ function DisplayProducts(props) {
 
   const [allProducts, setAllProducts] = useState([]);
   const [isShown, setIsShown] = useState(false);
-  const [category, setCategory] = useState("");
+  const [updatedProducts, setUpdatedProducts] = useState(allProducts);
 
   useEffect(() => {
     getAllProducts();
@@ -25,41 +26,39 @@ function DisplayProducts(props) {
       .get(`${baseUrl}/api/products`)
       .then((response) => {
         setAllProducts(response.data);
-        console.log(response.data);
+        setUpdatedProducts(response.data)
+        // console.log(response.data);
       })
       .catch((e) => console.log("error to get all products to display...", e));
   };
 
-  const handleSearch = (e) => {
-    allProducts.filter();
-  };
+  const filterProductList = (char) => {
+    let filteredProducts;
 
+    if (char === "") {
+      filteredProducts = allProducts;
+    } else {
+      filteredProducts = updatedProducts.filter((eachProduct) => {
+        return eachProduct.category.toLowerCase().includes(char.toLowerCase());
+      });
+    }
+    setUpdatedProducts(filteredProducts);
+  };
   const handleClickAdd = (e) => {
     setIsShown((current) => !current);
   };
 
   return (
     <div className={"DisplayProducts " + theme}>
-      <form class="search-bar" onSubmit={handleSearch}>
-        <input
-          className="Search"
-          type="text"
-          value={category}
-          placeholder="Filter by category"
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }}
-        />
-        <button class="btn-filter">Search</button>
-      </form>
+     <Search filterProductHandler={filterProductList} />
 
       <div className="AddProduct">
         {isLoggedIn && (
-          <Button onClick={handleClickAdd}>Create a Product</Button>
+          <Button variant="outline-info" onClick={handleClickAdd}>Create a Product</Button>
         )}
-        {isShown ? <AddProduct refreshProducts={getAllProducts} /> : null}
+        {isShown ? <AddProduct refreshProducts={filterProductList} /> : null}
       </div>
-      {allProducts.map((productObj, index) => {
+      {updatedProducts.map((productObj, index) => {
         return <ProductCard {...productObj} />;
       })}
     </div>

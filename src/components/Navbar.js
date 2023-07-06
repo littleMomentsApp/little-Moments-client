@@ -1,11 +1,11 @@
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 import { ThemeContext } from "../context/theme.context";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 function Navbar() {
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -22,31 +22,32 @@ function Navbar() {
 
   return (
     <nav className={"Navbar " + theme}>
-      <Button variant="secondary" onClick={routeChangeHome}>
+      <Button variant="outline-secondary" onClick={routeChangeHome}>
         Home
       </Button>
-      <Button variant="secondary" onClick={routeChangeLists}>
+      <Button variant="outline-secondary" onClick={routeChangeLists}>
         Lists
       </Button>
-      <Button variant="secondary" onClick={routeChangeProducts}>
+      <Button variant="outline-secondary" onClick={routeChangeProducts}>
         Products
       </Button>
       {isLoggedIn && (
         <>
-          <Button variant="secondary" onClick={logOutUser}>
+          <Button variant="outline-danger" onClick={logOutUser}>
             Logout
           </Button>
+          <p>{user && "Welcome " + user.name}</p>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">SignUp</Link>
+          <a href="/login"><Button variant="outline-secondary">Login</Button> </a>
+          <a href="/signup"><Button variant="outline-success">SignUp</Button> </a>
         </>
       )}
 
-      <Button variant="secondary" onClick={toggleTheme}>
+      <Button variant="outline-dark" onClick={toggleTheme}>
         {theme === "light" ? "dark 🌜" : "light 🟡"}
       </Button>
     </nav>

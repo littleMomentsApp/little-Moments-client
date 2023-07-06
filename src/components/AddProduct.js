@@ -10,7 +10,7 @@ function AddProduct({ refreshProducts }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(["other"]);
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -121,6 +121,7 @@ function AddProduct({ refreshProducts }) {
             value={category}
             placeholder="Select"
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
             {categories.map((element, index) => {
               return (

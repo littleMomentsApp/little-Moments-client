@@ -24,6 +24,8 @@ code {
   font-weight: 600;
   border-bottom: 1px solid #000000a8;
 }
+
+
 /* .Navbar button {
   background-color: #C3C1AB;
   color: #000000a8;
@@ -33,7 +35,7 @@ code {
   height: 30px;
 } */
 
-.Navbar a {
+/* .Navbar a {
   list-style: none;
   text-decoration: none;
   display: inline-block;
@@ -45,7 +47,7 @@ code {
   background-color: #C3C1AB;
   width: 100px;
   height: 25px;
-}
+} */
 .theme-btn {
   padding: 2px 15px;
   font-size: 1.1rem;
@@ -61,7 +63,7 @@ code {
 }
 
 .Navbar.light {
-   background: beige;
+   background-color:lightgray;
 }
 
 .Navbar.dark {

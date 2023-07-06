@@ -2,19 +2,17 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import { useContext } from "react";
-import { ThemeContext } from "../context/theme.context";
+import { Button } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
 function EditListPage(props) {
-  const { theme } = useContext(ThemeContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [products, setProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
-  const [addedProducts, setAddedProducts] = useState([]);
+  const [products, setProducts] = useState([]); // my
+  const [allProducts, setAllProducts] = useState([]); // all DB
+  const [addedProducts, setAddedProducts] = useState([]);// array ids my products
   const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
   const storedToken = localStorage.getItem("authToken");
@@ -45,9 +43,10 @@ function EditListPage(props) {
       .catch((error) => console.log(error));
   };
 
-  function handleDelete(pizza) {
-    const newProduct = addedProducts.filter((element) => element !== pizza);
-    setAddedProducts(newProduct);
+  function handleDelete(pizza, e) {
+    console.log('why are you not working now?', pizza)
+    const newProduct = products.filter((element) => element._id !== pizza);
+    setProducts(newProduct);
   }
 
   const handleFormSubmit = (e) => {
@@ -79,8 +78,8 @@ function EditListPage(props) {
   };
 
   return (
-    <div className={"EditListPage " + theme}>
-      <h3>Edit the List</h3>
+    <div>
+      <h3>Edit your List</h3>
 
       <form onSubmit={handleFormSubmit}>
         <label>
@@ -110,23 +109,19 @@ function EditListPage(props) {
           />
         </label>
         <label>Products:</label>
+        {/* MY PRODUCTS */}
         {products &&
           products.map((productObj, index) => (
             <div key={index} className="ProductCardDiv">
-              <ProductCard {...productObj} />
-              {/* <button onClick={handleDelete}
-              > */}
-              <button
-                onClick={() => {
-                  handleDelete(productObj._id);
-                }}
-              >
-                Remove Product
-              </button>
+              <ProductCard {...productObj}
+              deleteProduct={handleDelete}
+              />
+             
+             
             </div>
           ))}
         <br />
-        <button type="submit">Update</button>
+        <Button variant="outline-secondary" type="submit">Update</Button>
         <br /> <br />
       </form>
 
@@ -134,7 +129,7 @@ function EditListPage(props) {
         return (
           <ul key={index}>
             <h3>{productO.title}</h3>
-            <img src={productO.imageURL} alt="product-alt" />
+            <img className="imageProduct" src={productO.imageURL} alt="product-alt" />
             <p>{productO.description}</p>
             <h4>{productO.quantity}</h4>
             <p>{productO.category}</p>

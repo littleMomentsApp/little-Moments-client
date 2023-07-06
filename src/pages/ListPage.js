@@ -36,15 +36,15 @@ function ListPage() {
   return (
     <>
     {isLoggedIn && (
-      <div className="mb-5">
+      <div className="list-page">
         <h1>ListPage</h1>
-        <Button onClick={handleClick}>Create a List</Button>
+        <Button variant="secondary" onClick={handleClick}>Create a List</Button>
         {isShown ? <AddList refreshList={getLists} /> : null}      
         </div>
 
       )}
      
-    <div style={{display: "flex", flexDirection: "row"}} className={"gap-5 ListPage " + theme}>
+    <div style={{display: "flex", flexDirection: "row"}} className={"gap-5 ListPage" + theme}>
     
       
       {/* {isLoggedIn && */}
