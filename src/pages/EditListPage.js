@@ -114,6 +114,7 @@ function EditListPage(props) {
           products.map((productObj, index) => (
             <div key={index} className="ProductCardDiv">
               <ProductCard {...productObj}
+              list = {listId}
               deleteProduct={handleDelete}
               />
              

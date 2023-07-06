@@ -49,7 +49,7 @@ function DisplayProducts(props) {
   };
 
   return (
-    <div className={"DisplayProducts " + theme}>
+    <div>
      <Search filterProductHandler={filterProductList} />
 
       <div className="AddProduct">

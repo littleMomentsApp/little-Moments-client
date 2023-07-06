@@ -45,15 +45,18 @@ function ProductCard({
                 <h3>Not Available</h3>
               )}
 
-              <Button
-                variant="outline-danger"
-                onClick={(e) => {
-                  console.log('delete element ', _id)
-                  deleteProduct(_id, e);
-                }}
-              >
-                Remove Product
-              </Button>
+              {(location.pathname === `/lists/edit/${list}` && (
+                <Button
+                  variant="outline-danger"
+                  onClick={(e) => {
+                    console.log("delete element ", _id);
+                    deleteProduct(_id, e);
+                  }}
+                >
+                  Remove Product
+                </Button>
+              )
+              )}
             </Card.Body>
           </Card>
         </CardGroup>
