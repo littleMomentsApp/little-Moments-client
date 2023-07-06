@@ -43,9 +43,8 @@ function EditListPage(props) {
       .catch((error) => console.log(error));
   };
 
-  function handleDelete(pizza, e) {
-    console.log('why are you not working now?', pizza)
-    const newProduct = products.filter((element) => element._id !== pizza);
+  function handleDelete(productId, e) {
+    const newProduct = products.filter((element) => element._id !== productId);
     setProducts(newProduct);
   }
 
@@ -74,7 +73,8 @@ function EditListPage(props) {
   };
 
   const addProduct = (productId) => {
-    setAddedProducts([productId, ...addedProducts]);
+    const addingOne = allProducts.filter((element) => element._id === productId)
+    setProducts([...addingOne, ...products])
   };
 
   return (
