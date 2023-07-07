@@ -12,6 +12,7 @@ function ProductCard({
   handleBuy,
   list,
   deleteProduct,
+  deleteFromApi,
 }) {
   const location = useLocation();
 
@@ -52,6 +53,15 @@ function ProductCard({
           >
             Remove Product
           </Button>
+        )}
+        {location.pathname === `/products` && (
+          <button
+            onClick={() => {
+              deleteFromApi(_id);
+            }}
+          >
+            Delete Product
+          </button>
         )}
       </Card.Body>
     </Card>

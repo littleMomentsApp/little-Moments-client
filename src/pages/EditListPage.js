@@ -77,6 +77,7 @@ function EditListPage(props) {
       (element) => element._id === productId
     );
     setProducts([...addingOne, ...products]);
+    setAddedProducts([...addingOne, ...addedProducts]);
   };
 
   return (

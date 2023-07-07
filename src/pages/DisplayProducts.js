@@ -14,7 +14,7 @@ function DisplayProducts(props) {
   const [allProducts, setAllProducts] = useState([]);
   const [isShown, setIsShown] = useState(false);
   const [updatedProducts, setUpdatedProducts] = useState(allProducts);
-
+  const storedToken = localStorage.getItem("authToken");
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -46,6 +46,18 @@ function DisplayProducts(props) {
     setIsShown((current) => !current);
   };
 
+  const deleteProductFromApi = (productId) => {
+    axios
+      .delete(`${baseUrl}/api/products/${productId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        getAllProducts();
+        console.log("Product deleted...", response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <Search filterProductHandler={filterProductList} />
@@ -63,7 +75,10 @@ function DisplayProducts(props) {
           {updatedProducts.map((productObj, index) => {
             return (
               <Col xs={3} md={6} key={index}>
-                <ProductCard {...productObj} />
+                <ProductCard
+                  {...productObj}
+                  deleteFromApi={deleteProductFromApi}
+                />
               </Col>
             );
           })}
