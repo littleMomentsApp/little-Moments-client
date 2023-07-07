@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Little Moments - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Welcome to Little Moments, the ultimate gift planning website! We understand the importance of receiving gifts that truly matter to you. That's why we've created a platform where you can plan and curate your very own list of gifts, making it easier for your loved ones to choose exactly what you need and desire.
 
-In the project directory, you can run:
+At Little Moments, we believe that every gift should be special and meaningful. With our user-friendly interface, you have the freedom to create a personalized gift list tailored to your preferences. Whether it's for a birthday, wedding, baby shower, or any other special occasion, our platform empowers you to handpick the gifts that will make your moments unforgettable.
 
-### `npm start`
+The frontend is built using React and interacts with the backend API, which can be found in our [backend repository](https://github.com/littleMomentsApp/little-Moments-server)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Instructions to run this app on your computer
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+Clone this repository to your local machine.
+Navigate to the project's root directory.
+Dependencies
+Ensure that you have all the required environment variables properly configured. Install the required dependencies by running the following command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install`
+Start the development server and open the application in your default browser by running the following command:
 
-### `npm run build`
+`npm run start`
+This command will compile the code, start the development server, and automatically launch the application in your default browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Demo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Feel free to explore the platform Little Moments and create a list of gift that you would like to receive in your baby shower, keep in mind that users will "buy" the item but in fact they are passing the funds to you so you can buy the exact gift you want! Please refer to the backend repository's documentation for information on setting up and running the backend server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Access the deployed version of Little Moments using the following links:
