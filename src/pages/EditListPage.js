@@ -48,6 +48,7 @@ function EditListPage(props) {
   function handleDelete(productId, e) {
     const newProduct = products.filter((element) => element._id !== productId);
     setProducts(newProduct);
+    setAddedProducts(newProduct);
   }
 
   const handleFormSubmit = (e) => {
