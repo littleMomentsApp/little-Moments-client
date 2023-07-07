@@ -83,6 +83,8 @@ function ListDetailsPage() {
         </>
       )}
       <h3>{list.title}</h3>
+      <h4>{list.date}</h4>
+      <p>{list.description}</p>
       <Container>
         <Row>
           {list.products &&

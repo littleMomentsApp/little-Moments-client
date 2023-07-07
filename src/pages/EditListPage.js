@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { Button, Row, Col, Container, Card } from "react-bootstrap";
 
@@ -13,9 +13,11 @@ function EditListPage(props) {
   const [products, setProducts] = useState([]); // my
   const [allProducts, setAllProducts] = useState([]); // all DB
   const [addedProducts, setAddedProducts] = useState([]); // array ids my products
-  const currentDate = new Date().toISOString().split("T")[0];
+  // const currentDate = new Date().toISOString().split("T")[0];
   const { listId } = useParams();
   const storedToken = localStorage.getItem("authToken");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getList();
@@ -60,6 +62,7 @@ function EditListPage(props) {
       })
       .then((response) => {
         getList();
+        navigate(`/lists/${listId}`);
       });
   };
 
@@ -87,21 +90,48 @@ function EditListPage(props) {
       <form onSubmit={handleFormSubmit}>
         <label>
           Title:
-          <input
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon">
+                <i className="fas fa-pencil-alt prefix"></i>
+              </span>
+            </div>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="1"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            ></textarea>
+          </div>
         </label>
         <label>
-          Description
-          <textarea
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          Description:
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon">
+                <i className="fas fa-pencil-alt prefix"></i>
+              </span>
+            </div>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="1"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
         </label>
-        <label>
+        <Button
+          variant="outline-success"
+          className="ms-3 mt-5 mb-3 pt-2"
+          type="submit"
+        >
+          Update
+        </Button>
+        {/* <label>
           Date:
           <input
             type="date"
@@ -109,11 +139,16 @@ function EditListPage(props) {
             min={currentDate}
             value={date.toString().split("T")[0]}
             onChange={(e) => setDate(e.target.value)}
-          />
-        </label>
+          />          
+        </label> */}
+
         <Container>
           <Row>
-            <label>Products:</label>
+            <label>
+              {" "}
+              <br />
+              Products:
+            </label>
             {/* MY PRODUCTS */}
             {products &&
               products.map((productObj, index) => (
@@ -125,11 +160,6 @@ function EditListPage(props) {
                   />
                 </Col>
               ))}
-            <br />
-            <Button variant="outline-secondary" type="submit">
-              Update
-            </Button>
-            <br /> <br />
           </Row>
         </Container>
       </form>

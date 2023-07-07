@@ -9,30 +9,16 @@ import SignUpPage from "./pages/SignUpPage";
 import ListDetailsPage from "./pages/ListDetailsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DisplayProducts from "./pages/DisplayProducts";
-import { useContext } from "react";
-import { AuthContext } from "./context/auth.context";
-import { useLocation } from "react-router-dom";
-
-
+import AboutPage from "./pages/AboutPage";
 
 function App() {
-  const { isLoggedIn, user } = useContext(AuthContext);
-  const location = useLocation();
-
   return (
     <div className="App">
       <Navbar />
-      {
-        (isLoggedIn,
-        user ? location.pathname === "/" && (
-          <h1> Welcome {user.name}</h1>
-        ) : (
-          <h1>Enjoy the Little Moments...</h1>
-        ))
-      }
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/lists" element={<ListPage />} />
         <Route path="/products" element={<DisplayProducts />} />
         <Route path="/lists/:listId" element={<ListDetailsPage />} />

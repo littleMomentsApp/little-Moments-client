@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import service from "../api/service";
-import { Button } from "react-bootstrap";
+import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
+import { MDBFile } from "mdb-react-ui-kit";
 
 const API_URL = "http://localhost:5005/api";
 
@@ -78,75 +79,109 @@ function AddProduct({ refreshProducts }) {
     <>
       <h3>Create new product</h3>
 
-      <form onSubmit={handleSubmit}>
+      <form className="formAddProduct" onSubmit={handleSubmit}>
         <label>
           Title:
-          <input
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon">
+                <i className="fas fa-pencil-alt prefix"></i>
+              </span>
+            </div>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="1"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            ></textarea>
+          </div>
         </label>
-
-        <label>
-          Image:
-          <input type="file" onChange={(e) => handleFileUpload(e)} />
-        </label>
-
         <label>
           Description:
-          <input
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon">
+                <i className="fas fa-pencil-alt prefix"></i>
+              </span>
+            </div>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="1"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
         </label>
 
-        <label>
-          Quantity:
-          <input
-            type="number"
-            name="quantity"
-            min={0}
-            max={50}
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+        <div className="fileUploader">
+          <MDBFile
+            label="Select a picture to upload"
+            size="sm"
+            id="formFileSm"
+            onChange={(e) => handleFileUpload(e)}
           />
-        </label>
 
-        <label>
-          {/* {categories.map(element => {
+          <label>
+            Quantity:
+            <InputGroup>
+              <FormControl
+                type="number"
+                name="number"
+                value={quantity}
+                min={0}
+                max={50}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+            </InputGroup>
+          </label>
+
+          <label>
+            {/* {categories.map(element => {
 
           })
           } */}
-          Category:
-          <select
-            value={category}
-            placeholder="Select"
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          >
-            {categories.map((element, index) => {
-              return (
-                <option key={index} value={element}>
-                  {element}
-                </option>
-              );
-            })}
-          </select>
-        </label>
+            Category:
+            <Form.Control
+              required
+              className="ms-1"
+              name="category"
+              as="select"
+              placeholder="Category"
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              {" "}
+              <option hidden value="" selected>
+                {" "}
+                Select{" "}
+              </option>{" "}
+              {categories.map((element, index) => {
+                return (
+                  <option key={index} value={element}>
+                    {element}
+                  </option>
+                );
+              })}{" "}
+            </Form.Control>
+          </label>
 
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            min={0}
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
-        <Button variant="outline-success" type="submit">
+          <label>
+            Price:
+            <InputGroup>
+              <FormControl
+                type="number"
+                name="price"
+                value={price}
+                min={0}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </InputGroup>
+          </label>
+        </div>
+        <Button className="mt-2" variant="outline-success" type="submit">
           Add Product
         </Button>
       </form>

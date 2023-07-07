@@ -1,5 +1,7 @@
 import { Card, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
 
 function ProductCard({
   title,
@@ -15,10 +17,10 @@ function ProductCard({
   deleteFromApi,
 }) {
   const location = useLocation();
-
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <Card className="m-4" border="secondary" key={_id}>
-      <Card.Img variant="top" src={imageURL} />
+      <Card.Img variant="top" className="imageCard" src={imageURL} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
@@ -54,14 +56,15 @@ function ProductCard({
             Remove Product
           </Button>
         )}
-        {location.pathname === `/products` && (
-          <button
+        {isLoggedIn && location.pathname === `/products` && (
+          <Button
+            variant="outline-danger"
             onClick={() => {
               deleteFromApi(_id);
             }}
           >
             Delete Product
-          </button>
+          </Button>
         )}
       </Card.Body>
     </Card>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL || "/";
 
@@ -41,34 +41,59 @@ function AddList({ refreshList }) {
       <form onSubmit={handleSubmit}>
         <label>
           Title:
-          <input
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon">
+                <i className="fas fa-pencil-alt prefix"></i>
+              </span>
+            </div>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="1"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            ></textarea>
+          </div>
         </label>
-
         <label>
-          Description
-          <textarea
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          Description:
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="basic-addon">
+                <i className="fas fa-pencil-alt prefix"></i>
+              </span>
+            </div>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="1"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
         </label>
 
-        <label>
-          Date:
-          <input
-            type="date"
-            name="date"
-            min={currentDate}
-            value={date.toString().split("T")[0]}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </label>
+        <div>
+          <div className="row">
+            <div className="col-md-2 mx-auto">
+              <Form.Group controlId="dob">
+                <Form.Label>Select Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="date"
+                  placeholder="Date of List"
+                  min={currentDate}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </Form.Group>
+            </div>
+          </div>
+        </div>
 
-        <Button variant="outline-success" type="submit">
+        <Button className="mt-3" variant="outline-success" type="submit">
           Submit
         </Button>
       </form>
