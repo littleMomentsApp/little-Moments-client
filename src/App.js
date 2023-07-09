@@ -10,6 +10,7 @@ import ListDetailsPage from "./pages/ListDetailsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DisplayProducts from "./pages/DisplayProducts";
 import AboutPage from "./pages/AboutPage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }

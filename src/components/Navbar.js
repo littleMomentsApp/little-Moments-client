@@ -10,9 +10,6 @@ function Navbar() {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  const routeChangeHome = () => {
-    navigate("/");
-  };
   const routeChangeAbout = () => {
     navigate("/about");
   };
@@ -22,46 +19,57 @@ function Navbar() {
   const routeChangeProducts = () => {
     navigate("/products");
   };
+  const routeChangeLogin = () => {
+    navigate("/login");
+  };
+  const routeChangeSignUp = () => {
+    navigate("/signup");
+  };
 
   return (
     <Nav className={"Navbar " + theme}>
-      <h1>Little Moments</h1>
-
-      <Button variant="outline-secondary" onClick={routeChangeHome}>
-        Home
-      </Button>
-      <Button variant="outline-secondary" onClick={routeChangeAbout}>
-        About Us
-      </Button>
-      <Button variant="outline-secondary" onClick={routeChangeLists}>
-        Lists
-      </Button>
-      <Button variant="outline-secondary" onClick={routeChangeProducts}>
-        Products
-      </Button>
-      {isLoggedIn && (
-        <>
-          <Button variant="outline-danger" onClick={logOutUser}>
-            Logout
-          </Button>
-          <p>{user && "Welcome " + user.name + " 👶"}</p>
-        </>
-      )}
-
-      {!isLoggedIn && (
-        <>
-          <a href="/login">
-            <Button variant="outline-secondary">Login</Button>{" "}
-          </a>
-          <a href="/signup">
-            <Button variant="outline-success">SignUp</Button>{" "}
-          </a>
-        </>
-      )}
-
+      <div className="logo">
+        <a href="/">
+          <h1>Little Moments</h1>
+        </a>
+      </div>
+      <div className="RouteBtn">
+        <Button variant="outline-dark" onClick={routeChangeAbout}>
+          About Us
+        </Button>
+        <Button variant="outline-dark" onClick={routeChangeLists}>
+          Lists
+        </Button>
+        <Button variant="outline-dark" onClick={routeChangeProducts}>
+          Products
+        </Button>
+      </div>
       <Button variant="outline-dark" onClick={toggleTheme}>
         {theme === "light" ? "Dark 🌜" : "Light 🟡"}
       </Button>
+      <div id="UserBtn">
+        {!isLoggedIn && (
+          <>
+            <Button variant="outline-dark" onClick={routeChangeLogin}>
+              Login
+            </Button>
+            <Button variant="outline-dark" onClick={routeChangeSignUp}>
+              SignUp
+            </Button>{" "}
+          </>
+        )}
+
+        {isLoggedIn && (
+          <>
+            <Button variant="outline-danger" onClick={logOutUser}>
+              Logout
+            </Button>
+            <div id="userMessage">
+              <p>{user && "Hello, " + user.name}</p>
+            </div>
+          </>
+        )}
+      </div>
     </Nav>
   );
 }

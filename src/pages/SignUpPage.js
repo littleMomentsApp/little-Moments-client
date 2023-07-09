@@ -41,7 +41,7 @@ function SignUpPage(props) {
   };
 
   return (
-    <div className={"SignupPage "}>
+    <div className="Signup">
       <MDBContainer fluid>
         <MDBRow className="d-flex justify-content-center align-items-center h-100">
           <MDBCol col="12">

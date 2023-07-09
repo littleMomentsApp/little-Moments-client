@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import axios from "axios";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import {
   MDBContainer,
@@ -44,7 +44,7 @@ function LoginPage(props) {
   };
 
   return (
-    <div>
+    <div className="login">
       <MDBContainer fluid>
         <MDBRow className="d-flex justify-content-center align-items-center h-100">
           <MDBCol col="12">

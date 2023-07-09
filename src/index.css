@@ -14,20 +14,76 @@ code {
 .App {
   text-align: center;
   min-height: 100vh;
+  
 }
 
 .Navbar {
   display: flex;
-  justify-content: space-around;
-  background: white;
-  padding: 10px 200px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
   font-weight: 600;
-  border-bottom: 1px solid #000000a8;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.Navbar h1 {
+.Navbar a {
     width: 300px;
+    height: 30px;
+    align-items: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    text-decoration: none;
     
+}
+
+.Navbar a:hover {
+  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
+}
+
+.Navbar button {
+  width: 95px;
+  height: 40px;
+  color: black;
+  border: 1px solid black;
+}
+
+.Navbar button:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.Navbar #UserBtn {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  width: 210px;
+}
+
+#userMessage {
+  margin-right: 20px;
+  height: 40px;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.Navbar .logo {
+  width: 450px;
+  height: 42px;
+  padding-left: 150px;
+}
+
+.logo h1 {
+  line-height: 1.0;
+}
+
+.Navbar .RouteBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 350px;
+
 }
 
 .theme-btn {
@@ -41,7 +97,7 @@ code {
 }
 
 .dark {
-  background-color: #18191a;
+  background-color: #252526;
 }
 
 .Navbar.light {
@@ -50,6 +106,13 @@ code {
 
 .Navbar.dark {
   background-color: #252526;
+}
+.Footer .light {
+  background-color:lightgray;
+}
+
+.Footer .dark {
+ background-color: #252526;
 }
 
 .light a,
@@ -71,7 +134,7 @@ code {
 .dark h4,
 .dark label,
 .dark h3,
-.dark .theme-btn {
+.dark button {
   color: #ffffff;
 }
 .updateBtn{
@@ -102,7 +165,8 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(135, 206, 250, 0.621);
+  
+  background-size: cover;
 }
 
 .AboutPage h1 {
@@ -138,4 +202,15 @@ code {
   background-color: whitesmoke;
   border: 2px solid whitesmoke;
   border-radius: 10px;
+}
+
+.Footer {
+ position: sticky;
+ top: 96%;
+ width: 100vw;
+}
+
+.App {
+  background: rgba(12, 146, 230, 0.337);
+  background-size: contain;
 }
