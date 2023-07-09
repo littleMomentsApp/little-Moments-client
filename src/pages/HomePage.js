@@ -7,7 +7,7 @@ function HomePage() {
 
   return (
     <div className={"HomePage " + theme}>
-      <Carousel>
+      <Carousel id="Caroussel">
         <Carousel.Item>
           <img
             className="d-block w-100"

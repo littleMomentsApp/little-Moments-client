@@ -1,19 +1,13 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 .App {
   text-align: center;
   min-height: 100vh;
+  background-size: contain;
+  background-color: rgba(135, 206, 250, 0.495);
   
 }
 
@@ -93,22 +87,22 @@ code {
 }
 
 .light {
-  background-color: #efeded;
+  background-color: #efeded9e;
 }
 
 .dark {
-  background-color: #252526;
+  background-color: #1f1f1f;
 }
 
 .Navbar.light {
-   background-color:lightgray;
+   background-color:rgb(211, 211, 211);
 }
 
 .Navbar.dark {
   background-color: #252526;
 }
 .Footer .light {
-  background-color:lightgray;
+  background-color:rgb(211, 211, 211);
 }
 
 .Footer .dark {
@@ -161,6 +155,20 @@ code {
   text-align: -webkit-center;
 }
 
+.HomePage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.HomePage #Caroussel {
+  width: 1000px;
+  height: 800px;
+  margin-top: 5%;
+}
+
 .AboutPage {
   display: flex;
   flex-direction: column;
@@ -208,9 +216,6 @@ code {
  position: sticky;
  top: 96%;
  width: 100vw;
-}
-
-.App {
-  background: rgba(12, 146, 230, 0.337);
-  background-size: contain;
+ background-color: lightgray;
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

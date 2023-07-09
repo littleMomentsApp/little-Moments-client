@@ -12,7 +12,7 @@ function Footer() {
           <p>
             © 2023 Copyright:
             <a
-              className="text-white"
+              className="text-dark"
               href="/"
               style={{ textDecoration: "none", marginLeft: "10px" }}
             >
