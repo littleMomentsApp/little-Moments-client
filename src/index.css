@@ -3,7 +3,6 @@
   padding: 0;
   
 }
-
 .App {
   text-align: center;
   min-height: 100vh;
@@ -11,92 +10,14 @@
   background-color: rgba(135, 206, 250, 0.495);
   
 }
-
-.Navbar {
-  display: flex;
-  justify-content: space-between;
-  height: 65px;
-  width: 100%;
-  padding: 0px 20px;
-  align-items: center;
-  font-weight: 600;
-  position: fixed;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  z-index: 999;
-}
-
-.Navbar .logo a {
-    width: 300px;
-    height: 30px;
-    align-items: center;
-    margin-bottom: 15px;
-    cursor: pointer;
-    text-decoration: none;
-    
-}
-
-.Navbar a:hover {
-  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
-}
-
-.Navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.Navbar ul li {
-  display: inline-block;
-  margin: 5px;
-}
-
-.Navbar ul li a {
-  text-decoration: none;
-}
-
-
-.Navbar button {
-  width: 95px;
-  height: 40px;
-  color: black;
-  border: 1px solid black;
-}
-
-.Navbar button:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.Navbar .logo {
-  width: 450px;
-  height: 42px;
-  padding-left: auto;
-}
-
-.logo h1 {
-  line-height: 1.0;
-}
-
-.theme-btn {
-  padding: 2px 15px;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
 .light {
-  background-color: #efeded9e;
+  background-color:rgba(173, 216, 230, 0.47);
 }
 
 .dark {
   background-color: #1f1f1f;
 }
 
-.Navbar.light {
-   background-color:rgb(211, 211, 211);
-}
-
-.Navbar.dark {
-  background-color: #252526;
-}
 .Footer .light {
   background-color:rgb(211, 211, 211);
 }
