@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ListCard from "../components/ListCard";
-import AddList from "../components/AddList";
+import AddList from "../components/AddList/AddList";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Button } from "react-bootstrap";

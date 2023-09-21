@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
-import AddProduct from "../components/AddProduct";
+import AddProduct from "../components/AddProduct/AddProduct";
 import { Button, Row, Container, Col } from "react-bootstrap";
 import Search from "../components/Search";
 

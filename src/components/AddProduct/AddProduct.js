@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import service from "../api/service";
+import service from "../../api/service";
 import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import { MDBFile } from "mdb-react-ui-kit";
 
