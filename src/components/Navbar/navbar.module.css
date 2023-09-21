@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Bricolage+Grotesque:opsz,wght@10..48,500&family=Rock+Salt&display=swap');
 
-@media (max-width: 767px) and (min-height: 773px){
+@media (max-width: 767px){
 .Navbar {
     margin: 0;
     padding: 0;
@@ -235,6 +235,7 @@
     display: flex;
     justify-content: center;
     position: absolute;
+    padding-top: 0.3em;
     right: 2em;
     top: 0.75em;
     border-radius: 50px;
