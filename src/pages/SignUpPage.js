@@ -99,7 +99,7 @@ function SignUpPage(props) {
                 <div>
                   <p className="mb-0 text-black">
                     Already have an account?
-                    <a href="/login" class="text-black-50 fw-bold">
+                    <a href="/login" className="text-black-50 fw-bold">
                       Login
                     </a>
                   </p>

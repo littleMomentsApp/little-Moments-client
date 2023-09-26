@@ -1,33 +1,49 @@
 import { AuthContext } from "../../context/auth.context";
 import { useContext } from "react";
 import styles from "./navbar.module.css";
+import { Button } from "react-bootstrap";
 
 const NavLinks = (props) => {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
 
   return (
-    <ul className={styles.NavLinks}>
-      <li onClick={() => props.isMobile && props.closeMenu()}>
-        <a href="/about">About Us</a>
-      </li>
-      <li onClick={() => props.isMobile && props.closeMenu()}>
-        <a href="/lists">Lists</a>
-      </li>
-      <li onClick={() => props.isMobile && props.closeMenu()}>
-        <a href="/products">Products</a>
-      </li>
+    <section className={styles.NavLinks}>
+      <ul className={styles.NavLinksList}>
+        <li onClick={() => props.isMobile && props.closeMenu()}>
+          <a href="/about">About Us</a>
+        </li>
+        <li onClick={() => props.isMobile && props.closeMenu()}>
+          <a href="/lists">Lists</a>
+        </li>
+        <li onClick={() => props.isMobile && props.closeMenu()}>
+          <a href="/products">Products</a>
+        </li>
+      </ul>
       {!isLoggedIn && (
-        <>
-          <li onClick={() => props.isMobile && props.closeMenu()}>
+        <div className={styles.button_container}>
+          <Button
+            className={styles.button}
+            onClick={() => props.isMobile && props.closeMenu()}
+          >
             <a href="/login">Login </a>
-          </li>
-          <li onClick={() => props.isMobile && props.closeMenu()}>
+          </Button>
+          <Button
+            className={styles.button}
+            onClick={() => props.isMobile && props.closeMenu()}
+          >
             <a href="/signup">SignUp</a>
-          </li>
-        </>
+          </Button>
+        </div>
       )}
-      {isLoggedIn && <li onClick={logOutUser}>Log Out</li>}
-    </ul>
+
+      {isLoggedIn && (
+        <div className={styles.button_container}>
+          <Button className={styles.button} onClick={logOutUser}>
+            Log Out
+          </Button>
+        </div>
+      )}
+    </section>
   );
 };
 

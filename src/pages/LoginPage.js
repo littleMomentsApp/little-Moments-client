@@ -64,7 +64,7 @@ function LoginPage(props) {
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-black"
                   label="Email address"
-                  id="formControlLg"
+                  id="formControlLg1"
                   type="email"
                   size="lg"
                   placeholder="Enter Email"
@@ -75,7 +75,7 @@ function LoginPage(props) {
                   wrapperClass="mb-4 mx-5 w-100"
                   labelClass="text-black"
                   label="Password"
-                  id="formControlLg"
+                  id="formControlLg2"
                   type="password"
                   size="lg"
                   placeholder="Enter Password"
@@ -84,7 +84,7 @@ function LoginPage(props) {
                 />
 
                 <p className="small mb-3 pb-lg-2">
-                  <a class="text-black-50" href="#!">
+                  <a className="text-black-50" href="#!">
                     Forgot password?
                   </a>
                 </p>
@@ -94,7 +94,7 @@ function LoginPage(props) {
                 <div>
                   <p className="mb-0 text-black">
                     Don't have an account?{" "}
-                    <a href="/signup" class="text-black-50 fw-bold">
+                    <a href="/signup" className="text-black-50 fw-bold">
                       Sign Up
                     </a>
                   </p>
