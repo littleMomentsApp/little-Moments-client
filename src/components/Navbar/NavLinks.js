@@ -19,7 +19,7 @@ const NavLinks = (props) => {
           <a href="/products">Products</a>
         </li>
       </ul>
-      {!isLoggedIn && (
+      {!isLoggedIn ? (
         <div className={styles.button_container}>
           <Button
             className={styles.button}
@@ -34,9 +34,7 @@ const NavLinks = (props) => {
             <a href="/signup">SignUp</a>
           </Button>
         </div>
-      )}
-
-      {isLoggedIn && (
+      ) : (
         <div className={styles.button_container}>
           <Button className={styles.button} onClick={logOutUser}>
             Log Out
