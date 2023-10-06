@@ -244,13 +244,13 @@
   }
   
   .Navigation ul {
-    width: 45vw;
+    width: 30vw;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     list-style: none;
     position: absolute;
-    right: 5em;
+    right: 20em;
     top: 0.85em;
     
   }
@@ -278,6 +278,36 @@
     border-radius: 50px;
     width: 2.6em;
     height: 2em;
+  }
+  .button_container {
+    display: flex;
+    justify-content: space-between;
+    width: 16vw;
+    position: absolute;
+    top: 0.75em;
+    left: 76vw;
+  }
+
+  .button_container .button {
+    width: 6em;
+    color: #333;
+    background-color: pink;
+    border: pink solid 1px;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button_container .button:hover {
+    background-color: lightblue;
+    border: lightblue solid 1px;
+    color: #333;
+  }
+
+  .button a {
+    text-decoration: none;
+    color: #333;
   }
 
   .MobileNav {
